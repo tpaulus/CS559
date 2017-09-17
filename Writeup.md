@@ -40,9 +40,38 @@ The image above has a color depth of 7-bits per channel, and we can see how many
 
 ## 4. Enlarging
 
+Using Interpolation by Area, we can identify what value interpolated pixels will have using the values of their neighbors, and the distance to their neighbors. As described in the course notes, which are shown below; for each channel we use a weighted average of the neighboring values, where the distance is inversely proportional to the weight (e.g. a pixel that is father away has a lower weight, than one that is closer to the target pixel.)
 
+![](output/interpolation_method.png)
+
+```java
+private static int interpolate(int y, int x, int n_source_y, int s_source_y,
+                               int e_source_x, int w_source_x, int ne, int nw,
+                               int se, int sw, int k) {
+        int A1 = area(w_source_x * k, x, n_source_y * k, y);
+        int A2 = area(e_source_x * k, x, n_source_y * k, y);
+        int A3 = area(w_source_x * k, x, s_source_y * k, y);
+        int A4 = area(e_source_x * k, x, s_source_y * k, y);
+
+        return (A4 * nw + A3 * ne + A2 * sw + A1 * se) / (A1 + A2 + A3 + A4);
+    }
+```
+
+![](output/scale_1.jpg)
+
+Original Image
+
+
+![](output/scale_2.png)
+
+Scaled from the Original by a factor of 2.
+
+
+![](output/scale_3.png)
+
+Scaled from the Original by a factor of 3.
 
 ## Image Credit
-Elemaki (Own work) [[GFDL](http://www.gnu.org/copyleft/fdl.html) or [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)], [via Wikimedia Commons](https://commons.wikimedia.org/wiki/File%3A02.Trinidad_(59).JPG)  
-
 Ralf Roletschek [[GFDL](http://www.gnu.org/copyleft/fdl.html) or [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)], [via Wikimedia Commons](https://commons.wikimedia.org/wiki/File%3A13-08-09-peak-by-RalfR-01.jpg)
+
+Balaji Ananthanarayanan 07 (Own work) [[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0)], [via Wikimedia Commons](https://commons.wikimedia.org/wiki/File%3ACbe_flyover.jpg)
