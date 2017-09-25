@@ -25,7 +25,8 @@ public class Quantization {
     public BufferedImage quantiseImage(int numBits) {
         int n = 8 - numBits;
 
-        // Generate the Lookup table, this will do all the hard work reducing the number of bits per channel
+        // Generate the Lookup table,
+        // this will do all the hard work reducing the number of bits per channel
         float scale = 255.0f / (255 >> n);
         byte[] tableData = new byte[256];
         for (int i = 0; i < 256; ++i)

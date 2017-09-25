@@ -44,9 +44,12 @@ public class Enlarging {
                     Color sw = new Color(image.getRGB(w_source_x, s_source_y));
 
                     Color interp = new Color(
-                            getInterpolatedChannel(y, x, n_source_y, s_source_y, e_source_x, w_source_x, ne.getRed(), nw.getRed(), se.getRed(), sw.getRed(), scaleFactor),
-                            getInterpolatedChannel(y, x, n_source_y, s_source_y, e_source_x, w_source_x, ne.getGreen(), nw.getGreen(), se.getGreen(), sw.getGreen(), scaleFactor),
-                            getInterpolatedChannel(y, x, n_source_y, s_source_y, e_source_x, w_source_x, ne.getBlue(), nw.getBlue(), se.getBlue(), sw.getBlue(), scaleFactor)
+                            getInterpolatedChannel(y, x, n_source_y, s_source_y, e_source_x, w_source_x,
+                                    ne.getRed(), nw.getRed(), se.getRed(), sw.getRed(), scaleFactor),
+                            getInterpolatedChannel(y, x, n_source_y, s_source_y, e_source_x, w_source_x,
+                                    ne.getGreen(), nw.getGreen(), se.getGreen(), sw.getGreen(), scaleFactor),
+                            getInterpolatedChannel(y, x, n_source_y, s_source_y, e_source_x, w_source_x,
+                                    ne.getBlue(), nw.getBlue(), se.getBlue(), sw.getBlue(), scaleFactor)
                     );
                     destImage.setRGB(x, y, interp.getRGB());
                 }
@@ -56,7 +59,10 @@ public class Enlarging {
         return destImage;
     }
 
-    private static int getInterpolatedChannel(int y, int x, int n_source_y, int s_source_y, int e_source_x, int w_source_x, int ne, int nw, int se, int sw, int k) {
+    private static int getInterpolatedChannel(int y, int x,
+                                              int n_source_y, int s_source_y, int e_source_x, int w_source_x,
+                                              int ne, int nw, int se, int sw,
+                                              int k) {
         int A1 = area(w_source_x * k, x, n_source_y * k, y);
         int A2 = area(e_source_x * k, x, n_source_y * k, y);
         int A3 = area(w_source_x * k, x, s_source_y * k, y);
