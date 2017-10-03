@@ -5,6 +5,12 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
 repositories {
     mavenCentral()
 }
