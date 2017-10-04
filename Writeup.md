@@ -1,4 +1,4 @@
-AssumingCS-559 Homework 1
+CS-559 Homework 2
 =================
 
 ## 1. Image Formats
