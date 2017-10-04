@@ -22,10 +22,10 @@ public class SpeedTest {
                 ImageIO.read(this.getClass().getClassLoader().getResourceAsStream(TEST_IMAGE_2)),
                 TEST_IMAGE_TIME);
 
-        double speed = s.calculateSpeed();
-        assertTrue(speed > 0);
+        double pps = s.calculateSpeed();  // Pixels Per Second
+        assertTrue(pps > 0);
 
-        double fps = speed * TEST_IMAGE_SCALE / (TEST_IMAGE_TIME / 1000);
+        double fps = pps * TEST_IMAGE_SCALE; // Feet Per Second
 
         System.out.println(String.format("The car was traveling %.3f fps", fps));
         System.out.println(String.format("That's %.0f mph!", fps * 0.681818));

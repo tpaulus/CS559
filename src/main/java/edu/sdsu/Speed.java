@@ -7,11 +7,13 @@ import java.awt.image.BufferedImage;
  * @author Tom Paulus
  * Created on 9/30/17.
  */
+@SuppressWarnings("WeakerAccess")
 public class Speed {
     private BufferedImage startImg;
     private BufferedImage endImg;
-    private double duration;
+    private double duration; // Duration in MS
 
+    @SuppressWarnings("WeakerAccess")
     public Speed(BufferedImage startImg, BufferedImage endImg, double duration) {
         this.startImg = startImg;
         this.endImg = endImg;
@@ -24,6 +26,12 @@ public class Speed {
             throw new RuntimeException("Teleportation or Time Bending is not allowed!");
     }
 
+    /**
+     * Calculate the Speed based on the two provided images and the given duration
+     *
+     * @return Speed in Pixels per Second
+     */
+    @SuppressWarnings("WeakerAccess")
     public double calculateSpeed() {
         // AND The Images
         BufferedImage diff = difference(startImg, endImg);
@@ -35,7 +43,7 @@ public class Speed {
         int left = search(cols);
         int right = rsearch(cols);
 
-        return right - left;
+        return right - left / (duration/1000);
     }
 
     private BufferedImage difference(final BufferedImage image1, final BufferedImage image2) {

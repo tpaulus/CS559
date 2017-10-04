@@ -51,14 +51,20 @@ That is, there are more pixels than there are possible Gray-level values for the
 
 ## 4. Contrast Stretching
 
+
+
 ## 5. Histograms
 
+
 ---
+
 ### Running Programs
 Each program has an associated JUnit Unit Test in the `src/test` directory, which tests the specified program for the outlined parameters. These unit tests can be run via the Gradle Dependency and Build tool, whose wrapper is included in the root directory of this project.
 
 Running the line below in a Unix terminal while at the root directory of the project will execute all of the unit tests and show the results:
 `./gradlew clean build test`
+
+![](output/build.png)
 
 ---
 
@@ -77,3 +83,11 @@ By finding the two local maxima, we can identify the position of the car, and ca
 ![](output/Eqn2.gif)
 
 ## Program B - Histogram Calculation and Rendering
+
+<!-- TODO Method -->
+
+Original Image & Histogram are on the top, with the Equalized Image and Histogram on the bottom.
+
+![Original Image](output/hist_org.jpg) ![Equalized Image](output/hist_equalized.jpg)
+
+![Original Histogram](output/hist_org_hist.jpg) ![Equalized Histogram](output/hist_equ_hist.jpg)
