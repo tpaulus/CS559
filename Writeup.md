@@ -50,12 +50,15 @@ Lookup tables allow for the processing of images at at complexities less than (n
 That is, there are more pixels than there are possible Gray-level values for the transformation being run, with a given color depth.
 
 ## 4. Contrast Stretching
+Using the specified mapping, values lower than 119 will go to 0, while values greater than or equal to 120 will remain the same, and since the image is perfectly equalized, they have an even distribution across the remaining pixels.
 
-
+![Resulting Histogram of Contrast Stretching](output/stretched_hist.png)
 
 ## 5. Histograms
 
+There is a Gap in the Histogram at Decimal Value 191, since that is when `010000` produces a zero result when and-ed with the pixel value. All other values are the same, since they have been normalized using the provided normalization factors.
 
+![](output/norm_hist.png)
 ---
 
 ### Running Programs
@@ -84,8 +87,28 @@ By finding the two local maxima, we can identify the position of the car, and ca
 
 ## Program B - Histogram Calculation and Rendering
 
-<!-- TODO Method -->
+The `getHistogramValues` method coupled with the `makeGraph` method are used to generate a histogram of the image, as are shown below. The constants `HIST_COL_WIDTH` and `HIST_COL_PADDING` are used to draw the columns in the histogram and to calculate the initial width of the histogram (which is aided by `COLOR_DEPTH` which specifies the expected number of columns).
 
+A similar method is used to equalize the picture, with the same `getHistogramValues` method being used to calculate the histogram values, but the `equalize` method then performs a normalization across the image using the process shown below.
+
+```
+histogram[0] = ((int) (a * histogram[0]));
+for (int l = 1; l < EQUALIZE_L; l++) {
+    histogram[l] = ((int) (histogram[l - 1] + a * histogram[l]));
+}
+
+for (int y = 0; y < output.getHeight(); y++) {
+    for (int x = 0; x < output.getWidth(); x++) {
+        int norm = histogram[new Color(inputImage.getRGB(x, y)).getRed()];
+        output.setRGB(x, y, new Color(norm, norm, norm).getRGB());
+    }
+}
+
+```
+
+This method can also be called via the command line, once compiled, and when supplied with a file path as the first argument, will generate the original histogram, normalize the image, and then generate a new histogram for the newly generated, normalized image.
+
+#### Example Output
 Original Image & Histogram are on the top, with the Equalized Image and Histogram on the bottom.
 
 ![Original Image](output/hist_org.jpg) ![Equalized Image](output/hist_equalized.jpg)
