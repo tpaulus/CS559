@@ -1,5 +1,6 @@
 package edu.sdsu.cs;
 
+import java.awt.*;
 import java.awt.image.*;
 
 /**
@@ -7,9 +8,58 @@ import java.awt.image.*;
  * Created on 10/20/17.
  */
 public class EdgeDetect {
+    /**
+     * Detect Edges using only a single channel of the image (ie. Red, Green or Blue)
+     *
+     * @param image {@link BufferedImage} Source Image
+     * @param threshold Sobel Detection Threshold
+     * @return {@link BufferedImage} Sobel Result Gradient
+     */
     public BufferedImage detectEdge(final BufferedImage image, int threshold) {
         SobelEdge edge = new SobelEdge(threshold);
         return edge.filter(image);
+    }
+
+    /**
+     * Detect Edges using only a single channel of the image (ie. Red, Green or Blue)
+     *
+     * @param image {@link BufferedImage} Source Image
+     * @param threshold Sobel Detection Threshold
+     * @param channel Color Channel (0=Red, 1=Green, 2=Blue)
+     * @return {@link BufferedImage} Sobel Result Gradient
+     */
+    public BufferedImage detectEdge(final BufferedImage image, int threshold, int channel) {
+        BufferedImage singleChannel = new BufferedImage(image.getWidth(), image.getHeight(),
+                BufferedImage.TYPE_BYTE_GRAY);
+        for (int x = 0; x < image.getWidth(); x++) {
+            for (int y = 0; y < image.getHeight(); y++) {
+                int color;
+
+                switch (channel) {
+                    case 0:
+                        // Red
+                        color = new Color(image.getRGB(x,y)).getRed();
+                        break;
+
+                    case 1:
+                        // Green
+                        color = new Color(image.getRGB(x,y)).getGreen();
+                        break;
+
+                    case 2:
+                        // Blue
+                        color = new Color(image.getRGB(x,y)).getBlue();
+                        break;
+
+                    default:
+                        throw new RuntimeException("Invalid Channel");
+                }
+
+                singleChannel.setRGB(x,y, new Color(color, color, color).getRGB());
+            }
+        }
+
+        return detectEdge(singleChannel, threshold);
     }
 
 
