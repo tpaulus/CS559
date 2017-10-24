@@ -1,6 +1,81 @@
 CS-559 Homework 3
 =================
+## 1 - High / Low Pass Filters
+### A)
 
+### B)
+
+## 2 - Masks
+### A)
+
+### B)
+
+## 3 - Sobel Edge Detection
+
+Using a threshold of 1...
+
+**Horizontal (x)**
+```
+0   0   0   0   0   0   0   0
+0   0   0   0   0   0   0   1
+0   0   0   0   0   0   1   0
+0   0   0   0   0   1   0   0
+0   0   0   0   1   0   0   0
+0   0   0   1   0   0   0   0
+0   0   1   0   0   0   0   0
+0   1   0   0   0   0   0   0
+```
+
+**Vertical (y)**
+```
+0   0   0   0   0   0   0   0
+0   0   0   0   0   0   0   1
+0   0   0   0   0   0   1   0
+0   0   0   0   0   1   0   0
+0   0   0   0   1   0   0   0
+0   0   0   1   0   0   0   0
+0   0   1   0   0   0   0   0
+0   1   0   0   0   0   0   0
+```
+
+
+**Both**
+```
+0   0   0   0   0   0   0   0
+0   0   0   0   0   0   0   1
+0   0   0   0   0   0   1   0
+0   0   0   0   0   1   0   0
+0   0   0   0   1   0   0   0
+0   0   0   1   0   0   0   0
+0   0   1   0   0   0   0   0
+0   1   0   0   0   0   0   0
+```
+
+## 4 - Laplacian
+### A)
+
+### B)
+
+## 5 - Fourier Transform
+![](output/Eqn2.gif)
+
+## 6 - FFT
+### A)
+Because of the periodicity of F(u,v), we need to shift the Fourier Transform by half of one period, to ensure that the entire spectrum is shown and processed.
+
+![](output/Fig5_7.png)
+
+### B)
+When performing an FFT, it is necessary to reverse the bits to correctly identify the array position of the data that will be processed by the FFT. It allows for the correct combination of sequences to perform the FFT. Thus, before performing an FFT, the image function, f(x) myst be reordered to ensure that the resulting FFT is correct.
+
+### C)
+If F(u,v) is known, then f(x,y) can be calculated using the following formula:
+
+![](output/Eqn1.gif)
+
+### D)
+
+---
 
 ## Programming Task A
 We can apply a Sobel Edge Detection Method with varying thresholds to the provided images. This method yields good results for simple images (those with clear borders between areas), but doesn't work as well with overlapping colors.

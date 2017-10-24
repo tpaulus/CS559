@@ -5,13 +5,12 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
- * Add Salt and Pepper Noise to an Image
- *
  * @author Tom Paulus
  * Created on 10/23/17.
  */
 public class SaltAndPepper {
     /**
+     * Add Salt and Pepper noise to an image
      *
      * @param image {@link BufferedImage} Source Image
      * @param p Percentage of Seasoning to apply to the image
