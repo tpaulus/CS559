@@ -102,6 +102,10 @@ If F(u,v) is known, then f(x,y) can be calculated using the following formula:
 
 ### D)
 
+The Fast Fourier Transform (FFT) method takes advantage of the separability of the Fourier Transform, which allows us to break apart the two dimensional FFT into a one-dimensional sum along each row of the image. This intermediary result is then taken into another one-dimensional FFT going down each column of the intermediary array. This is possible because a Fourier transform of length N can be split into the sum of two Fourier transforms each of length N/2. Given that N is a power of 2, this process can be applied recursively until the length of the computer transformation is 2.
+
+Being able to break the two-dimensional transform into two one-dimensional transforms takes the transformation from O(n^2) complexity to O(n log n) complexity, which drastically reduces the computation time for images with higher resolutions.
+
 ---
 
 ## Programming Task A
