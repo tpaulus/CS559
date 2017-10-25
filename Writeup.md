@@ -2,13 +2,33 @@ CS-559 Homework 3
 =================
 ## 1 - High / Low Pass Filters
 ### A)
+The combination (addition) of the absolute values of the High- and Low-pass filters applied to an image will yield a sum of 1, since all frequencies are being included. This assumes that the High- and Low-pass filters are complementary and do not omit common frequency ranges). It follows that applying both a high and low pass filter to an image, will result in the null image (all 0s). With some basic manipulations, we can rearrange this relationship to show that the the source image, less the image that was processed through the low-pass filter will produce the image as if it was processed by the high-pass filter.
+
+![](output/Eqn4.gif)
 
 ### B)
+
+Gaussian, its derivations, and linear filters are separable, since they are applied equally and uniformly across the entire image. Wherein other filters, like Laplacian filters are non-separable due to their use of derivations in the convolution to yield the resulting high- or low-pass filtered image. Separable filters are generally easier to compute, due to the low complexity of the convolution mask.
 
 ## 2 - Masks
 ### A)
+Source: [3, 2, 1, 7, 8, 4, 3, 6, 5]
+
+Median: 4
+
 
 ### B)
+![](output/harmonic_mean.png)
+
+Source: [3, 2, 1, 7, 8, 4, 3, 6, 5]
+
+![](output/Eqn3.gif)
+
+Harmonic Mean: 2.949668357393679
+
+### C) Application to Gaussian Noise
+
+Because Gaussian noise is distributed normally, wherein there are fine-scaled image edges across the image which can be reduced/eliminated with smoothing, which is what is accomplished by the two masks discussed above. In the case of the provided matrix, the Median method method is more likely to produce the desired result, and will likely be the case for images with less than 50% noise. However, for very noisy images, like photos taken in low-light, a harmonic mean would likely yield better results, since it is better for values that vary greatly, like the variance that stems from electronic circuit noise.
 
 ## 3 - Sobel Edge Detection
 
@@ -38,7 +58,6 @@ Using a threshold of 1...
 0   1   0   0   0   0   0   0
 ```
 
-
 **Both**
 ```
 0   0   0   0   0   0   0   0
@@ -54,7 +73,15 @@ Using a threshold of 1...
 ## 4 - Laplacian
 ### A)
 
+![](output/Eqn5.gif)
+
+Laplacian is rarely used on its own for edge detection since it is prone to corruption by noise due to the second derivative. It is used in conjunction with a Gaussian filter to first reduce the noise (and blur the image), followed by the application of the Laplacian.
+
 ### B)
+
+![](output/Eqn6.gif)
+
+This mask approximation is even more prone to corruption by noise, since it covers 4 times the area (since each of the edges are twice as long). It fails for the same reason that the initial mask does, but much more readily.
 
 ## 5 - Fourier Transform
 ![](output/Eqn2.gif)
