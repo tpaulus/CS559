@@ -1,0 +1,20 @@
+<html>
+<body>
+Provides classes to handle input of images from and output of images
+to files in various common formats.
+<p>
+Currently, support exists for: the "PBMPLUS" formats PBM, PGM and PPM
+(ASCII versions only); SIF, a simple home-grown format;
+PNG, the <a href="http://www.cdrom.com/pub/png/">Portable Network
+Graphics</a> format; and JFIF, the JPEG File Interchange Format.
+</p>
+<p>
+For each supported format, there exists an encoder class, implementing
+the {@link com.pearsoneduc.ip.io.ImageEncoder} interface, and a decoder
+class, implementing the {@link com.pearsoneduc.ip.io.ImageDecoder}
+interface.  Images can be read or written by calling the methods defined
+in these interfaces, freeing client code from the need for any explicit
+knowledge of the file formats supported by the system.
+</p>
+</body>
+</html>
