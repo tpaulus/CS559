@@ -4,10 +4,11 @@ import com.pearsoneduc.ip.op.FFTException;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+
+import static edu.sdsu.cs.ImageSupport.getGrayScale;
+import static edu.sdsu.cs.ImageSupport.saveImage;
 
 /**
  * @author Tom Paulus
@@ -52,19 +53,5 @@ public class LowPassTest {
     private void applySpatialFilter(BufferedImage image, final String nameStem) throws IOException {
         BufferedImage filteredImage = Spatial.meanFilter(image, TEST_MEAN_SIZE);
         saveImage(filteredImage, nameStem + "-mean");
-    }
-
-    private void saveImage(final BufferedImage image, final String fileName) throws IOException {
-        File outFile = File.createTempFile(fileName + "-", ".jpg");
-        ImageIO.write(image, "JPEG", outFile);
-        Desktop.getDesktop().open(outFile);
-    }
-
-    private BufferedImage getGrayScale(BufferedImage inputImage) {
-        BufferedImage img = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
-        Graphics g = img.getGraphics();
-        g.drawImage(inputImage, 0, 0, null);
-        g.dispose();
-        return img;
     }
 }
