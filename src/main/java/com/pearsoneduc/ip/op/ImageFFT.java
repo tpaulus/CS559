@@ -49,8 +49,8 @@ public class ImageFFT {
   public static final int BARTLETT_WINDOW = 2;
   public static final int HAMMING_WINDOW = 3;
   public static final int HANNING_WINDOW = 4;
-  private static final String NO_DATA = "no spectral data available";
-  private static final String INVALID_PARAMS = "invalid filter parameters";
+  protected static final String NO_DATA = "no spectral data available";
+  protected static final String INVALID_PARAMS = "invalid filter parameters";
   private static final double TWO_PI = 2.0*Math.PI;
 
 
@@ -76,7 +76,7 @@ public class ImageFFT {
   private int window;
 
   /** Indicates whether we have spectral or spatial data. */
-  private boolean spectral = false;
+  protected boolean spectral = false;
 
 
   ///////////////////////////// PUBLIC METHODS /////////////////////////////

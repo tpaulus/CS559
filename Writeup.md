@@ -49,4 +49,11 @@ We find that the higher the cutoff, the sharper the image is. With the input ima
 :- | :-- | :-- | :- | :--
 ![](output/FLOWERS-gaussian-VLOW.jpg) | ![](output/FLOWERS-gaussian-LOW.jpg) | ![](output/FLOWERS-gaussian-MED.jpg) | ![](output/FLOWERS-gaussian-HIGH.jpg) | ![](output/FLOWERS-gaussian-XHIGH.jpg)
 
-## 4. More Butterworth
+## 4. Gaussian High Pass Filtering
+![](output/Eqn1.png)
+
+Using this method, we can find the noise in the `Blonde2.jpg` image which has sinusoidal noise. This could then be used to remove all of the noise in the image with some further adjustments.
+
+ Source  | Processed     
+ :------ | :--------
+![](output/BLONDE2-before.jpg) | ![](output/BLONDE2-GBPF.jpg)      
